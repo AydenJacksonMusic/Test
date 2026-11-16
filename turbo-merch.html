@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayden Jackson — Official Merch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #3d5a4c; /* olive/green Portland vibe */
+    --accent-hover: #2d443a;
+    --announcement: #1f2937;
+    --card-bg: #fafafa;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.5;
+  }
+
+  /* Announcement Bar */
+  .announcement {
+    background: var(--announcement);
+    color: #fff;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+
+  /* Header */
+  header {
+    border-bottom: 1px solid var(--border);
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    text-decoration: none;
+    z-index: 102;
+  }
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+  }
+  nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  nav a:hover { color: var(--accent); }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .search-box {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    width: 180px;
+    outline: none;
+  }
+  .search-box:focus { border-color: var(--accent); }
+  .cart-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+  }
+  .cart-count {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 102;
+  }
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    transition: all 0.3s ease;
+  }
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 101;
+    padding: 100px 32px 40px;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .mobile-menu.open {
+    display: flex;
+  }
+  .mobile-menu a {
+    font-size: 28px;
+    font-family: 'Playfair Display', serif;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .mobile-menu a:hover {
+    color: var(--accent);
+  }
+  .close-menu {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-size: 36px;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--text);
+    z-index: 103;
+    padding: 4px 8px;
+  }
+  .close-menu:hover {
+    color: var(--accent);
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    height: 85vh;
+    min-height: 560px;
+    background: linear-gradient(135deg, #2d443a 0%, #3d5a4c 50%, #4a6b5c 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1800&q=80') center/cover;
+    opacity: 0.45;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 24px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 10vw, 120px);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 32px;
+    opacity: 0.95;
+  }
+  .btn {
+    display: inline-block;
+    background: #fff;
+    color: var(--text);
+    padding: 14px 28px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn:hover { background: var(--accent); color: #fff; }
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid #fff;
+    margin-left: 12px;
+  }
+  .btn-outline:hover { background: #fff; color: var(--text); }
+
+  /* Sections */
+  section { padding: 80px 24px; }
+  .container { max-width: 1400px; margin: 0 auto; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .section-subtitle {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Product Grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px;
+  }
+  .product-card {
+    background: #fff;
+    transition: transform 0.2s;
+  }
+  .product-card:hover { transform: translateY(-4px); }
+  .product-image {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: #f3f4f6;
+    overflow: hidden;
+  }
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .product-card:hover img { transform: scale(1.05); }
+  .badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    letter-spacing: 0.5px;
+  }
+  .quick-view {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: var(--text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .product-card:hover .quick-view { opacity: 1; }
+  .product-info { padding: 16px 4px; text-align: center; }
+  .product-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .product-price {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .product-price .sale { color: #dc2626; margin-right: 6px; }
+  .product-price s { color: #9ca3af; }
+
+  /* Featured Collection */
+  .featured {
+    background: #f8f9fa;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .two-col img { width: 100%; height: 500px; object-fit: cover; }
+  .two-col-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    margin-bottom: 16px;
+  }
+  .two-col-content p { color: var(--muted); margin-bottom: 24px; }
+
+  /* Newsletter */
+  .newsletter {
+    background: var(--accent);
+    color: #fff;
+    text-align: center;
+  }
+  .newsletter h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+  .newsletter form {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .newsletter input {
+    flex: 1;
+    padding: 14px 16px;
+    border: none;
+    font-size: 14px;
+  }
+  .newsletter button {
+    background: #1f2937;
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  /* Footer */
+  footer {
+    background: #111827;
+    color: #9ca3af;
+    padding: 60px 24px 30px;
+    font-size: 14px;
+  }
+  .footer-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  footer h4 {
+    color: #fff;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  footer a { color: #9ca3af; text-decoration: none; display: block; margin-bottom: 8px; }
+  footer a:hover { color: #fff; }
+  .footer-bottom {
+    max-width: 1400px;
+    margin: 0 auto;
+    border-top: 1px solid #374151;
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  /* Cart Sidebar */
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 200;
+  }
+  .cart-overlay.open { opacity: 1; visibility: visible; }
+  .cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 400px;
+    max-width: 90vw;
+    height: 100%;
+    background: #fff;
+    z-index: 201;
+    transition: right 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-sidebar.open { right: 0; }
+  .cart-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cart-items { flex: 1; overflow-y: auto; padding: 20px; }
+  .cart-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cart-item img { width: 70px; height: 70px; object-fit: cover; }
+  .cart-footer { padding: 20px; border-top: 1px solid var(--border); }
+  .close-cart { background: none; border: none; font-size: 24px; cursor: pointer; }
+
+  @media (max-width: 900px) {
+    .two-col { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    nav ul { display: none; }
+    .search-box { display: none; }
+    .hamburger { display: flex; }
+    .header-inner { padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announcement">
+  FREE SHIPPING ON ORDERS OVER $75 · NEW DROP LIVE NOW
+</div>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">AYDEN JACKSON</a>
+    <nav>
+      <ul>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#new">New Arrivals</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#tour">Tour</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <input type="text" class="search-box" placeholder="Search...">
+      <button class="cart-btn" id="openCart">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenu" aria-label="Close menu">×</button>
+  <a href="#shop" onclick="closeMobileMenu()">Shop</a>
+  <a href="#new" onclick="closeMobileMenu()">New Arrivals</a>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#tour" onclick="closeMobileMenu()">Tour</a>
+</div>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>ayden</h1>
+    <p>Official merch — music, limited drops & essentials.</p>
+    <a href="#shop" class="btn">SHOP NOW</a>
+    <a href="#new" class="btn btn-outline">NEW DROP</a>
+  </div>
+</section>
+
+<section id="new">
+  <div class="container">
+    <h2 class="section-title">New Arrivals</h2>
+    <p class="section-subtitle">Fresh pieces from the latest drop. Limited quantities available.</p>
+    <div class="product-grid" id="productGrid">
+      <!-- Products injected by JS -->
+    </div>
+  </div>
+</section>
+
+<section class="featured">
+  <div class="container two-col">
+    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=800&q=80" alt="Live performance">
+    <div class="two-col-content">
+      <h2>Live From The Stage</h2>
+      <p>Every piece is designed with the same energy as the live show. From soft tees to heavyweight hoodies, made for fans who feel the music.</p>
+      <a href="#shop" class="btn">EXPLORE COLLECTION</a>
+    </div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="container">
+    <h2 class="section-title">All Merch</h2>
+    <p class="section-subtitle">Tees, hoodies, vinyl, posters & more.</p>
+    <div class="product-grid" id="allProducts">
+      <!-- More products -->
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="container">
+    <h2>Stay in the Loop</h2>
+    <p>First access to new drops, exclusive offers, and tour updates.</p>
+    <form onsubmit="event.preventDefault(); alert('Thanks for subscribing!'); this.reset();">
+      <input type="email" placeholder="Your email" required>
+      <button type="submit">SUBSCRIBE</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>AYDEN JACKSON</h4>
+      <p>Official merch store. Music, limited drops, and pieces made for the fans.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="#shop">All Products</a>
+      <a href="#new">New Arrivals</a>
+      <a href="#">Vinyl</a>
+      <a href="#">Apparel</a>
+    </div>
+    <div>
+      <h4>Info</h4>
+      <a href="#">About</a>
+      <a href="#">Shipping</a>
+      <a href="#">Returns</a>
+      <a href="#">Contact</a>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <a href="https://x.com/aydenjacmusic">X / Twitter</a>
+      <a href="#">Instagram</a>
+      <a href="#">Spotify</a>
+      <a href="#">YouTube</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Ayden Jackson. All rights reserved. Inspired by Turbo theme aesthetics.
+  </div>
+</footer>
+
+<!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="close-cart" id="closeCart">×</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p style="color:#6b7280; text-align:center; margin-top:40px;">Your cart is empty</p>
+  </div>
+  <div class="cart-footer">
+    <div style="display:flex; justify-content:space-between; margin-bottom:16px; font-weight:600;">
+      <span>Subtotal</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <button class="btn" style="width:100%; text-align:center;" onclick="alert('Checkout would go here (demo)')">CHECKOUT</button>
+  </div>
+</div>
+
+<script>
+const products = [
+  { id: 1, name: "Live Tour Tee", price: 32, sale: null, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80", badge: "NEW" },
+  { id: 2, name: "Heavyweight Hoodie", price: 78, sale: null, image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80", badge: null },
+  { id: 3, name: "Limited Vinyl", price: 28, sale: null, image: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=600&q=80", badge: "LIMITED" },
+  { id: 4, name: "Poster Print", price: 22, sale: 18, image: "https://images.unsplash.com/photo-1619983081563-430f63602796?auto=format&fit=crop&w=600&q=80", badge: "SALE" },
+  { id: 5, name: "Studio Cap", price: 28, sale: null, image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80", badge: null },
+  { id: 6, name: "Long Sleeve", price: 45, sale: null, image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=600&q=80", badge: "NEW" },
+  { id: 7, name: "Crewneck Sweatshirt", price: 58, sale: null, image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80", badge: null },
+  { id: 8, name: "Signed CD", price: 15, sale: null, image: "https://images.unsplash.com/photo-1619983081563-430f63602796?auto=format&fit=crop&w=600&q=80", badge: null },
+];
+
+let cart = [];
+
+function renderProducts(containerId, list) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = list.map(p => `
+    <div class="product-card">
+      <div class="product-image">
+        <img src="${p.image}" alt="${p.name}">
+        ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
+        <button class="quick-view" onclick="addToCart(${p.id})">ADD TO CART</button>
+      </div>
+      <div class="product-info">
+        <div class="product-title">${p.name}</div>
+        <div class="product-price">
+          ${p.sale ? `<span class="sale">$${p.sale}</span><s>$${p.price}</s>` : `$${p.price}`}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addToCart(id) {
+  const product = products.find(p => p.id === id);
+  const existing = cart.find(item => item.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  updateCart();
+  openCart();
+}
+
+function updateCart() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+
+  const itemsEl = document.getElementById('cartItems');
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '<p style="color:#6b7280; text-align:center; margin-top:40px;">Your cart is empty</p>';
+  } else {
+    itemsEl.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <img src="${item.image}" alt="">
+        <div style="flex:1">
+          <div style="font-weight:500">${item.name}</div>
+          <div style="font-size:13px; color:#6b7280">Qty: ${item.qty}</div>
+          <div style="margin-top:4px">$${(item.sale || item.price) * item.qty}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  const total = cart.reduce((sum, item) => sum + (item.sale || item.price) * item.qty, 0);
+  document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
+}
+
+function openCart() {
+  document.getElementById('cartSidebar').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+}
+function closeCart() {
+  document.getElementById('cartSidebar').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+
+document.getElementById('openCart').addEventListener('click', openCart);
+document.getElementById('closeCart').addEventListener('click', closeCart);
+document.getElementById('cartOverlay').addEventListener('click', closeCart);
+
+// Hamburger Menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenuBtn = document.getElementById('closeMenu');
+
+function openMobileMenu() {
+  hamburger.classList.add('active');
+  mobileMenu.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+  hamburger.classList.remove('active');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  if (mobileMenu.classList.contains('open')) {
+    closeMobileMenu();
+  } else {
+    openMobileMenu();
+  }
+});
+
+closeMenuBtn.addEventListener('click', closeMobileMenu);
+
+// Render
+renderProducts('productGrid', products.slice(0, 4));
+renderProducts('allProducts', products);
+</script>
+
+</body>
+</html>
